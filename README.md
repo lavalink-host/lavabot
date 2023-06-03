@@ -1,5 +1,5 @@
 # lavabot
  
- - 🤖 discord bot, that serves the purpose of managing certain aspects lavalink.host 
+ >  🤖 discord bot, that serves the purpose of managing certain aspects lavalink.host 
 
- 
+
