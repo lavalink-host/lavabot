@@ -1,6 +1,6 @@
 
 const Discord = require('discord.js');
-
+const mongoose = require('mongoose');
 const eventHandler = require('./handlers/events.js');
 const messageCommandHandler = require('./handlers/messageCommands.js');
 const slashCommandHandler = require('./handlers/slashCommands.js');
@@ -28,7 +28,6 @@ const client = new Discord.Client({
     }
 });
 
-
 async function start() {
 await client.login(config.bot.token);
 client.messageCommands = new Discord.Collection();
@@ -47,6 +46,12 @@ await buttonHandler.loadButtons(client);
 await selectMenuHandler.loadSelectMenus(client);
 await contextMenus.loadContextMenus(client);
 await register.load(client);
+
+await mongoose.connect(config.mongodb.url).then(() => {
+    console.log('Connected to MongoDB');
+}).catch((err) => {
+    console.log(err);
+});
 }
 start()
 

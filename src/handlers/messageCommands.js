@@ -26,7 +26,7 @@ async function loadMessageCommands(client) {
 		const commandFiles = readdirSync(`./src/interactions/messageCommands/${commandFolders[i].name}`).filter(file => file.endsWith('.js'));
 		for (let j = 0; j < commandFiles.length; j++) {
 			const command = await require(`../interactions/messageCommands/${commandFolders[i].name}/${commandFiles[j]}`);
-			delete require.cache[require.resolve(command)];
+			delete require.cache[require.resolve(`../interactions/messageCommands/${commandFolders[i].name}/${commandFiles[j]}`)];
 			if (command.aliases) {
 				command.aliases.forEach(alias => {
 					client.messageCommandsAliases.set(alias, command);

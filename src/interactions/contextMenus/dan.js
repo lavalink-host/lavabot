@@ -5,6 +5,6 @@ module.exports = {
 		.setName('dan')
 		.setType(ApplicationCommandType.User),
 	async execute(client, interaction) {
-		 await interaction.reply('dans HOT!');
+		 await interaction.reply('dans actually hot tho ngl');
 	},
 };
