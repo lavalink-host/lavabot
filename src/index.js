@@ -29,29 +29,29 @@ const client = new Discord.Client({
 });
 
 async function start() {
-await client.login(config.bot.token);
-client.messageCommands = new Discord.Collection();
-client.messageCommandsAliases = new Discord.Collection();
-client.slashCommands = new Discord.Collection();
-client.modals = new Discord.Collection();
-client.buttons = new Discord.Collection();
-client.selectMenus = new Discord.Collection();
-client.contextMenus = new Discord.Collection();
+    await client.login(config.bot.token);
+    client.messageCommands = new Discord.Collection();
+    client.messageCommandsAliases = new Discord.Collection();
+    client.slashCommands = new Discord.Collection();
+    client.modals = new Discord.Collection();
+    client.buttons = new Discord.Collection();
+    client.selectMenus = new Discord.Collection();
+    client.contextMenus = new Discord.Collection();
 
-await eventHandler.loadEvents(client);
-await messageCommandHandler.loadMessageCommands(client);
-await slashCommandHandler.loadSlashCommands(client);
-await modalHandler.loadModals(client);
-await buttonHandler.loadButtons(client);
-await selectMenuHandler.loadSelectMenus(client);
-await contextMenus.loadContextMenus(client);
-await register.load(client);
+    await eventHandler.loadEvents(client);
+    await messageCommandHandler.loadMessageCommands(client);
+    await slashCommandHandler.loadSlashCommands(client);
+    await modalHandler.loadModals(client);
+    await buttonHandler.loadButtons(client);
+    await selectMenuHandler.loadSelectMenus(client);
+    await contextMenus.loadContextMenus(client);
+    await register.load(client);
 
-await mongoose.connect(config.mongodb.url).then(() => {
-    console.log('Connected to MongoDB');
-}).catch((err) => {
-    console.log(err);
-});
+    await mongoose.connect(config.mongodb.url).then(() => {
+        console.log('Connected to MongoDB');
+    }).catch((err) => {
+        console.log(err);
+    });
 }
 start()
 

@@ -14,11 +14,9 @@ module.exports = {
     aliases: ['user-new'],
     async execute(client, message, args) {
 
-        
+
 
         try {
-
-
             const deleteMessageButton = new ButtonBuilder()
                 .setCustomId('deleteOwnChannel')
                 .setLabel('Delete')
@@ -124,15 +122,22 @@ module.exports = {
                     await acceptTerms.delete();
                     await collector.stop();
 
-                } else if (i.customId === 'denyTerms') {
+                    const newUser = new userSchema({
+                        discordID: message.author.id,
+                        email: email,
+                        username: username,
+                        linkTime: new Date().toLocaleTimeString(),
+                        linkDate: new Date().toLocaleDateString(),
+                    });
 
+                } else if (i.customId === 'denyTerms') {
                     i.deferUpdate();
                     const embed = new EmbedBuilder()
                         .setTitle('👤 Panel Account')
                         .setDescription(`### You have denied the ToS & Privacy Policy, you won\'t be able to use our service.`)
                         .setColor('#ff0000');
+                    await createdChannel.send({ embeds: [embed], components: [panelCreatedDeleteButton] });
                     await acceptTerms.delete();
-                    await createdChannel.send({ embeds: [embed], components: [deleteMessageButton] });
                     await collector.stop();
 
                 }
